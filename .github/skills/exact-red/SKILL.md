@@ -1,6 +1,6 @@
 ---
 name: exact-red
-description: Run only the Red phase of one Predictive TDD cycle — activate exactly one behavior and reach a behavioral Red with a stated prediction. Invoke when the user asks for /exact-red, for the next Red step, or wants to drive Red-Green-Refactor one phase at a time instead of letting the full cycle run.
+description: Run only the Red phase of one Predictive TDD cycle — activate exactly one behavior and reach a behavioral Red with a stated prediction. Part of EXACT Coding. Invoke only when the user runs /exact-red or asks for this single phase by name; an EXACT Coding run does not invoke it.
 ---
 
 # Red — one phase, manually driven

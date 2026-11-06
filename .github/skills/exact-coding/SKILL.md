@@ -1,6 +1,6 @@
 ---
 name: exact-coding
-description: Predictive Test-Driven Development with a complete up-front test list, falsifiable predictions before deterministic checks, one-test Red-Green-Refactor cycles, domain-responsibility review, and configurable human checkpoints. Invoke when the user explicitly asks for TDD or Predictive TDD. Do NOT invoke for ordinary coding tasks where TDD was not requested.
+description: Predictive Test-Driven Development with a complete up-front test list, falsifiable predictions before deterministic checks, one-test Red-Green-Refactor cycles, domain-responsibility review, and configurable human checkpoints. Invoke only when the user asks for EXACT Coding or Predictive TDD by name, or runs /exact-coding. Do NOT invoke for a generic request for TDD or test-first work.
 ---
 
 # EXACT Coding — Predictive TDD v1.2
@@ -49,6 +49,9 @@ tools belong only to the selected stack profile.
    "Verification part" in the Predictive TDD skill.
 5. Continue until every listed behavior is executable and all applicable gates
    from the active stack profile pass.
+6. When every behavior is green and all gates pass, stop. Tell the user the piece
+   is ready for review and commit, and suggest the `code-review` skill. Do not
+   commit unless asked.
 
 A test already satisfied by an earlier generalization is legitimate evidence,
 not a gap. If you foresee it before activation, it belongs in the
@@ -64,8 +67,7 @@ before continuing.
 
 ## Human-in-the-loop
 
-`../exact-predictive-tdd/human-in-the-loop.md` is the single source of truth for checkpoints. Its default
-`full-hitl` level stops after Test List, Red, and Refactor, and whenever a
+`../exact-predictive-tdd/human-in-the-loop.md` is the single source of truth for checkpoints. Its default level (`full-hitl`, overridable per run) stops after Test List, Red, and Refactor, and whenever a
 prediction is wrong. Green has no default stop.
 
 ## Provenance

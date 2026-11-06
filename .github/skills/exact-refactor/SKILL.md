@@ -1,6 +1,6 @@
 ---
 name: exact-refactor
-description: Run only the Refactor phase of one Predictive TDD cycle — review the green code against the Four Rules of Simple Design, apply the domain-responsibility review, and run the mandatory domain-boundary trial. Invoke when the user asks for /exact-refactor, for the next Refactor step, or wants to drive Red-Green-Refactor one phase at a time instead of letting the full cycle run.
+description: Run only the Refactor phase of one Predictive TDD cycle — review the green code against the Four Rules of Simple Design, apply the domain-responsibility review, and run the mandatory domain-boundary trial. Part of EXACT Coding. Invoke only when the user runs /exact-refactor or asks for this single phase by name; an EXACT Coding run does not invoke it.
 ---
 
 # Refactor — one phase, manually driven

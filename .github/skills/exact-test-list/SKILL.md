@@ -1,6 +1,6 @@
 ---
 name: exact-test-list
-description: TDD Test List Phase - Create a comprehensive test list covering every example and rule from the specification
+description: TDD Test List Phase - Create a comprehensive test list covering every example and rule from the specification. Part of EXACT Coding. Invoke only when the user runs /exact-test-list or an EXACT Coding run reaches this phase.
 ---
 
 # TDD Test List Phase

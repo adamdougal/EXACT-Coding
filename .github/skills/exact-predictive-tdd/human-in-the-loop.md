@@ -4,7 +4,13 @@ This file is the single source of truth for Predictive TDD checkpoints.
 
 ## Autonomy Level
 
-**Current setting:** `full-hitl`
+**Default:** `full-hitl`
+
+**Per-run override:** If the user names a level when starting a run
+(`/exact-coding refactor-only`, `/exact-coding every-n-tests 3`), use it for the
+whole run. State the active level once in the first message of the run. If the
+user changes the level mid-run, apply it from the next checkpoint. With no named
+level, use the default.
 
 | Level | Stops after |
 |---|---|

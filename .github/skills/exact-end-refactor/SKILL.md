@@ -1,6 +1,6 @@
 ---
 name: exact-end-refactor
-description: Final metric-driven refactoring pass over the whole production tree, using the active stack profile's smell and cognitive-complexity tools plus McCabe and APP mass to drive one measured change at a time. Invoke when the user explicitly asks for a final cleanup, a quality pass over the finished code, or an end-refactor. Do NOT invoke automatically after a TDD cycle — the per-cycle refactor already covers that.
+description: Final metric-driven refactoring pass over the whole production tree, using the active stack profile's smell and cognitive-complexity tools plus McCabe and APP mass to drive one measured change at a time. Invoke only when the user asks for exact-end-refactor by name.
 ---
 
 > **This is an optional, manually invoked pass.** It is not part of the

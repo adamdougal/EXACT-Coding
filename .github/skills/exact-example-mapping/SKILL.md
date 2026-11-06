@@ -1,6 +1,6 @@
 ---
 name: exact-example-mapping
-description: Collaborative Example Mapping session (Matt Wynne) to explore a feature before implementation — discovers rules, concrete examples, open questions and out-of-scope stories through conversation. Invoke when the user explicitly asks for Example Mapping, wants to explore or clarify requirements before coding, or asks to prepare a feature for TDD. Do NOT invoke for coding tasks where the requirements are already settled.
+description: Collaborative Example Mapping session (Matt Wynne) to explore a feature before implementation — discovers rules, concrete examples, open questions and out-of-scope stories through conversation. Invoke only when the user asks for Example Mapping by name or runs /exact-example-mapping.
 ---
 
 # Example Mapping

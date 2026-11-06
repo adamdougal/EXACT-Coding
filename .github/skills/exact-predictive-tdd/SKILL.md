@@ -1,6 +1,6 @@
 ---
 name: exact-predictive-tdd
-description: Run strict Predictive Test-Driven Development by stating falsifiable expectations before every deterministic check, comparing predictions with reality, and proceeding in one-test Red-Green-Refactor cycles. Use when the user explicitly requests Predictive TDD, prediction-driven TDD, or asks to continue an existing Predictive TDD cycle.
+description: Run strict Predictive Test-Driven Development by stating falsifiable expectations before every deterministic check, comparing predictions with reality, and proceeding in one-test Red-Green-Refactor cycles. Method reference for EXACT Coding; read by the exact-* skills. Invoke only when the user asks for Predictive TDD by name or to continue an EXACT Coding cycle.
 ---
 
 # Predictive Test-Driven Development
@@ -21,6 +21,13 @@ The prediction requirement applies only within the TDD workflow. Routine reposit
 6. Implement only enough to satisfy the active behavior and keep previous behavior green.
 7. Refactor only while behavior tests are green.
 8. Do not invent unspecified behavior; resolve ambiguous observable contracts by stating the reading you adopt.
+
+## Other TDD skills
+
+While an EXACT Coding run or phase is active, this skill governs the TDD loop.
+
+- Do not load `test-driven-development` (superpowers) or `tdd` (Matt Pocock), even if they seem to apply.
+- Do not write a separate implementation plan: the example map and the test list are the plan.
 
 ## Preparation
 

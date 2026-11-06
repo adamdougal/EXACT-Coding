@@ -1,6 +1,6 @@
 ---
 name: exact-green
-description: Run only the Green phase of one Predictive TDD cycle — make the smallest production change that satisfies the active failing test, with a stated prediction before the check. Invoke when the user asks for /exact-green, for the next Green step, or wants to drive Red-Green-Refactor one phase at a time instead of letting the full cycle run.
+description: Run only the Green phase of one Predictive TDD cycle — make the smallest production change that satisfies the active failing test, with a stated prediction before the check. Part of EXACT Coding. Invoke only when the user runs /exact-green or asks for this single phase by name; an EXACT Coding run does not invoke it.
 ---
 
 # Green — one phase, manually driven
