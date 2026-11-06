@@ -2,6 +2,86 @@
 
 Exercise setup for the **EXACT Coding** workshop: **EX**ample-guided, **A**I-**C**ollaborative & **T**est-driven Development.
 
+## This fork
+
+**Purpose:** adapts the Copilot harness (`harness/copilot`) so EXACT Coding
+installs as opt-in user-level skills that work in every repo and Copilot session
+worktree, and can be removed in one step.
+
+The rest of this README is upstream's and still uses upstream's skill names and
+paths. Design: `docs/superpowers/specs/2026-11-06-exact-coding-integration-design.md`.
+
+### Changes from upstream
+
+- Every skill is prefixed `exact-`: `exact-predictive-tdd`, `exact-test-list`,
+  `exact-example-mapping`, `exact-red`, `exact-green`, `exact-refactor` and
+  `exact-end-refactor`, alongside the unchanged `exact-coding` and
+  `exact-coding-isolated-refactor`. The refactor custom agent is
+  `exact-isolated-refactor`.
+- References between skills are relative to each skill's directory
+  (`../exact-<skill>/...`) instead of `.github/skills/...`, so they resolve
+  wherever the skills are installed.
+- The shared checkpoint file moved from `exact-coding-shared/` to
+  `exact-predictive-tdd/human-in-the-loop.md`.
+- Skills trigger only when asked for by name (EXACT Coding, Predictive TDD,
+  Example Mapping) or by slash command, not on a generic request for TDD.
+- The Autonomy Level can be chosen per run, e.g. `/exact-coding refactor-only`.
+  The default stays `full-hitl`.
+- During an EXACT run, other TDD skills (superpowers `test-driven-development`,
+  Matt Pocock's `tdd`) are not loaded, and the example map and test list replace
+  a separate implementation plan.
+- `exact-coding` stops when the piece of work is green, suggests `code-review`,
+  and does not commit unless asked.
+- Example Mapping has a draft mode: it drafts cards only from the sources you
+  name, then walks you through them one rule at a time.
+- Example Mapping output headings are in English, and it asks where to write the
+  map instead of defaulting to `src/`.
+- `exact-test-list` reads the spec you name, or the latest Example Mapping
+  output, instead of `prompt.md`.
+- `scripts/check-exact-skills.sh` checks all of the above structurally.
+
+### Install
+
+Install the whole set: the skills reference each other, so a partial install
+breaks. Run the `cp` from a clone of this fork.
+
+```bash
+npx skills add adamdougal/EXACT-Coding -g -a github-copilot -s '*' -y
+cp .github/agents/exact-isolated-refactor.agent.md ~/.copilot/agents/
+```
+
+### Remove
+
+```bash
+npx skills remove -g -s exact-coding exact-coding-isolated-refactor exact-predictive-tdd exact-test-list exact-example-mapping exact-red exact-green exact-refactor exact-end-refactor -y
+rm ~/.copilot/agents/exact-isolated-refactor.agent.md
+```
+
+### Update from upstream
+
+```bash
+git remote add upstream https://github.com/marcoemrich/EXACT-Coding.git  # once
+git fetch upstream harness/copilot
+git rebase upstream/harness/copilot
+scripts/check-exact-skills.sh            # must print OK before you push
+git push --force-with-lease origin adamdougal-copilot
+npx skills update -g -y
+```
+
+An upstream change can reintroduce old skill names or `.github/skills/` paths;
+the guard catches both. If the agent file changed, repeat the `cp` from Install.
+
+### Usage
+
+1. `/exact-example-mapping` interviews you about the feature;
+   `/exact-example-mapping draft <sources>` drafts the map from tickets, an ADR
+   or files for you to correct.
+2. `/exact-coding [<level>]` runs the loop on that map, e.g.
+   `/exact-coding every-n-tests 3`. `/exact-coding-isolated-refactor [<level>]`
+   runs the Refactor phase in the `exact-isolated-refactor` agent.
+3. Or drive it yourself one phase at a time with `/exact-red`, `/exact-green`
+   and `/exact-refactor`.
+
 ## Workshop
 
 Test-Driven, AI-Assisted Development for Maintainable Code.
