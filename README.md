@@ -27,6 +27,8 @@ paths. Design: `docs/superpowers/specs/2026-11-06-exact-coding-integration-desig
   Example Mapping) or by slash command, not on a generic request for TDD.
 - The Autonomy Level can be chosen per run, e.g. `/exact-coding refactor-only`.
   The default stays `full-hitl`.
+- A prediction mismatch no longer stops a `task-end` run, matching the Autonomy
+  Level table (upstream's mismatch rule exempted only `autonomous`).
 - During an EXACT run, other TDD skills (superpowers `test-driven-development`,
   Matt Pocock's `tdd`) are not loaded, and the example map and test list replace
   a separate implementation plan.
@@ -47,6 +49,7 @@ breaks. Run the `cp` from a clone of this fork.
 
 ```bash
 npx skills add adamdougal/EXACT-Coding -g -a github-copilot -s '*' -y
+mkdir -p ~/.copilot/agents
 cp .github/agents/exact-isolated-refactor.agent.md ~/.copilot/agents/
 ```
 

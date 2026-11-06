@@ -223,7 +223,7 @@ skipped.
 When actual and predicted outcomes differ:
 
 1. State that the prediction was incorrect and preserve both outcomes.
-2. Stop feature implementation and consult `human-in-the-loop.md`. Unless the Autonomy Level is `autonomous`, report the discrepancy and wait for the human's decision.
+2. Stop feature implementation and consult `human-in-the-loop.md`. Unless the Autonomy Level is `task-end` or `autonomous`, report the discrepancy and wait for the human's decision.
 3. Use the smallest deterministic check to explain whether the cause is existing behavior, test setup, command/environment, load/compile failure, quality tooling, coupling, or regression.
 4. Make a new evidence-based prediction and check it.
 5. Resume only after the discrepancy is understood.

@@ -30,5 +30,4 @@ intended behavioral Red. After Refactor, name the Four Rules decision, any
 change made, and the passing gates.
 
 When a prediction is wrong, preserve predicted and actual outcomes, stop feature
-implementation, and ask whether to investigate or continue. Only `autonomous`
-may investigate and resume without waiting.
+implementation, and ask whether to investigate or continue. Only `task-end` and `autonomous` may investigate and resume without waiting.
