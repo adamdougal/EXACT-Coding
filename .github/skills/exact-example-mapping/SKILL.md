@@ -17,6 +17,20 @@ Example Mapping (by Matt Wynne) is a collaborative technique to explore a featur
 - **Questions (red)**: Open questions and uncertainties that need clarification
 - **New Stories**: Behavior discovered during the session that belongs to a DIFFERENT story - sliced out of the current scope rather than explored here
 
+## Modes
+
+- **Interview** (default): the 1:1 interview described under "How to Conduct the Session". Nothing about it changes.
+- **Draft**: selected by `draft` in the invocation (`/exact-example-mapping draft <sources>`) or by "draft it from …", with named sources such as tickets, an ADR or files. Follow "Draft mode" below.
+
+## Draft mode
+
+1. Draft the story, rules, examples and questions **only** from the named sources.
+2. Tag each card `(draft — <source>)`.
+3. Where the sources are silent on a rule, a boundary or one of the four categories under "Mandatory Questions", write a question, never an example.
+4. Then walk the user through the draft one rule at a time, showing the rule, its examples and its questions. The user confirms, corrects or drops each card.
+5. Write nothing to the output file until every card is confirmed.
+6. Steps 5–7 (new stories, review, evaluate) run as in interview mode.
+
 ## Why Example Mapping Before TDD?
 
 Example Mapping is the **bridge between requirements and test lists**:
@@ -58,7 +72,7 @@ Carry it into the output file so it stays visible.
 
 ### CRITICAL: You are a FACILITATOR, not an inventor
 
-You do NOT know the domain. The user does. Your job is to ASK, not to assume.
+You do NOT know the domain. The user does. Your job is to ASK, not to assume. In draft mode the named sources stand in for the user's first answer, and the user's confirmation is still required for every card.
 
 - **NEVER invent a rule** - Ask the user what the rules are
 - **NEVER invent an example** - Ask the user for concrete examples
@@ -185,46 +199,46 @@ You MUST ask the user at least these categories of questions:
 
 ## Output Format
 
-Write the result to a markdown file at the location the user specifies (or default to `src/<feature-name>-example-mapping.md`).
+Write the result to a markdown file at the location the user specifies; if none, ask.
 
 Use this structure:
 
 ```markdown
 # Example Mapping: <Feature Name>
 
-## Story (gelb)
+## Story (yellow)
 
 <User story or feature description>
 
-## Rules (blau)
+## Rules (blue)
 
-### Regel 1: <Rule Name>
+### Rule 1: <Rule Name>
 <Description of the rule>
 
-### Regel 2: <Rule Name>
+### Rule 2: <Rule Name>
 <Description of the rule>
 
-## Examples (gruen)
+## Examples (green)
 
-### Zu Regel 1: <Rule Name>
-- <Input> -> <Expected Output>
-- <Input> -> <Expected Output>
-
-### Zu Regel 2: <Rule Name>
+### For Rule 1: <Rule Name>
 - <Input> -> <Expected Output>
 - <Input> -> <Expected Output>
 
-## Questions (rot)
+### For Rule 2: <Rule Name>
+- <Input> -> <Expected Output>
+- <Input> -> <Expected Output>
+
+## Questions (red)
 
 - <Open question 1> (resolves: <who or what could answer>)
 - <Open question 2>
 (or: "No open questions - all ambiguities were resolved.")
 
-## New Stories (ausgelagert)
+## New Stories (sliced out)
 
-- <Titel der ausgelagerten Story>
-- <Titel der ausgelagerten Story>
-(or: "Keine - der Scope hat gehalten.")
+- <Title of the sliced-out story>
+- <Title of the sliced-out story>
+(or: "None - the scope held.")
 ```
 
 ## Health Indicators

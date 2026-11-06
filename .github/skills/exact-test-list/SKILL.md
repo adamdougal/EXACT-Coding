@@ -12,7 +12,7 @@ You are now in the **Test List Phase** of TDD. Follow these instructions to crea
 ## Your Mission
 
 Create a test list using the project's inactive-test mechanism that covers **every rule and every example** from the specification:
-1. Read the specification (`prompt.md`) thoroughly -- every rule, every example, every clarifying question (?)
+1. Read the specification the user names, or else the most recent Example Mapping output from this conversation; if neither exists, ask for it. Read it thoroughly: every rule, every example, every clarifying question (?).
 2. Turn each example into at least one inactive test case
 3. Order tests from simplest to most complex
 4. Separate the **driving tests**, which build the implementation step by step, from the **verification tests**, which confirm what the driving tests already built
