@@ -17,27 +17,43 @@ fail() {
   failure_count=$((failure_count + 1))
 }
 
+# Runs grep in this shell so read errors (exit > 1) count as failures; matches land in grep_result.
+grep_result=""
+grep_into_result() {
+  local check_id="$1" grep_status
+  shift
+  grep_result="$(grep "$@")" && grep_status=0 || grep_status=$?
+  if [ "$grep_status" -gt 1 ]; then
+    fail IO "$check_id could not read its input (grep exit $grep_status)"
+  fi
+}
+
+fail_for_each_result_line() {
+  local check_id="$1" result_line
+  [ -n "$grep_result" ] || return 0
+  while IFS= read -r result_line; do
+    fail "$check_id" "$result_line"
+  done <<< "$grep_result"
+}
+
 checked_files=()
 for skill_dir in "$SKILLS_DIR"/exact-*/; do
   [ -d "$skill_dir" ] || continue
+  skill_file_list="$(find -L "$skill_dir" -type f)" || fail IO "could not fully traverse $skill_dir"
+  [ -n "$skill_file_list" ] || continue
   while IFS= read -r skill_file; do
     checked_files+=("$skill_file")
-  done < <(find -L "$skill_dir" -type f)
+  done <<< "$skill_file_list"
 done
 if [ -f "$agent_file" ]; then
   checked_files+=("$agent_file")
 fi
 
-grep_checked_files() {
-  [ "${#checked_files[@]}" -gt 0 ] || return 0
-  grep -HnE -- "$1" "${checked_files[@]}" || true
-}
-
 fail_on_matches() {
-  local check_id="$1" pattern="$2" match
-  while IFS= read -r match; do
-    fail "$check_id" "$match"
-  done < <(grep_checked_files "$pattern")
+  local check_id="$1" pattern="$2"
+  [ "${#checked_files[@]}" -gt 0 ] || return 0
+  grep_into_result "$check_id" -HnE -- "$pattern" "${checked_files[@]}"
+  fail_for_each_result_line "$check_id"
 }
 
 require_text() {
@@ -85,13 +101,15 @@ done
 for skill_md in "$SKILLS_DIR"/exact-*/SKILL.md; do
   [ -f "$skill_md" ] || continue
   skill_dir="$(dirname "$skill_md")"
+  grep_into_result C3 -oE '`\.\./exact-[a-z-]+/[^`]*`' "$skill_md"
+  [ -n "$grep_result" ] || continue
   while IFS= read -r reference; do
     target="$skill_dir/$reference"
     case "$reference" in
       */) [ -d "$target" ] || fail C3 "$skill_md: directory $reference does not resolve" ;;
       *) [ -f "$target" ] || fail C3 "$skill_md: file $reference does not resolve" ;;
     esac
-  done < <(grep -oE '`\.\./exact-[a-z-]+/[^`]*`' "$skill_md" | tr -d '`' | sort -u || true)
+  done <<< "$(printf '%s\n' "$grep_result" | tr -d '`' | sort -u)"
 done
 
 predictive_tdd_dir="$SKILLS_DIR/exact-predictive-tdd"
@@ -101,7 +119,7 @@ fi
 
 # C4 old names
 fail_on_matches C4 '`/?(red|green|refactor|test-list|predictive-tdd|example-mapping|end-refactor)`'
-fail_on_matches C4 '(^|[ (`])/(red|green|refactor|test-list|example-mapping)\b'
+fail_on_matches C4 '(^|[ (`])/(red|green|refactor|test-list|predictive-tdd|example-mapping|end-refactor)\b'
 
 # C5 agent
 require_text C5 "$agent_file" "name: exact-isolated-refactor"
@@ -114,9 +132,8 @@ example_mapping_md="$SKILLS_DIR/exact-example-mapping/SKILL.md"
 if [ ! -f "$example_mapping_md" ]; then
   fail C7 "missing file $example_mapping_md"
 else
-  while IFS= read -r match; do
-    fail C7 "$match"
-  done < <(grep -HnE -- '\((gelb|blau|gruen|rot|ausgelagert)\)|Regel|Keine -|Titel der' "$example_mapping_md" || true)
+  grep_into_result C7 -HnE -- '\((gelb|blau|gruen|rot|ausgelagert)\)|Regel|Keine -|Titel der' "$example_mapping_md"
+  fail_for_each_result_line C7
 fi
 
 # C8 opt-in
@@ -124,7 +141,9 @@ fail_on_matches C8 'asks for TDD or|prepare a feature for TDD|clarify requiremen
 
 # C9 features
 require_text C9 "$predictive_tdd_dir/human-in-the-loop.md" "Per-run override"
+require_text C9 "$predictive_tdd_dir/human-in-the-loop.md" 'Only `task-end` and `autonomous` may investigate and resume'
 require_text C9 "$predictive_tdd_dir/SKILL.md" "## Other TDD skills"
+require_text C9 "$predictive_tdd_dir/SKILL.md" 'Unless the Autonomy Level is `task-end` or `autonomous`'
 require_text C9 "$example_mapping_md" "## Draft mode"
 
 if [ "$failure_count" -gt 0 ]; then
