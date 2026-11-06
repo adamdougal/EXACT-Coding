@@ -1,9 +1,11 @@
 ---
-name: test-list
+name: exact-test-list
 description: TDD Test List Phase - Create a comprehensive test list covering every example and rule from the specification
 ---
 
 # TDD Test List Phase
+
+Paths in this skill are relative to this skill's directory.
 
 You are now in the **Test List Phase** of TDD. Follow these instructions to create a comprehensive test list.
 
@@ -105,7 +107,7 @@ Test List Created:
 
 Predict and run the full suite. Continue only when the inactive list leaves the
 suite green; correct the list without implementing behavior if it does not.
-Then consult `.github/skills/exact-coding-shared/human-in-the-loop.md`. Apply the Test-List checkpoint for the active
+Then consult `../exact-predictive-tdd/human-in-the-loop.md`. Apply the Test-List checkpoint for the active
 Autonomy Level and wait for explicit approval when required; otherwise continue
 to the first Predictive TDD cycle.
 

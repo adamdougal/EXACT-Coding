@@ -1,9 +1,11 @@
 ---
-name: red
-description: Run only the Red phase of one Predictive TDD cycle — activate exactly one behavior and reach a behavioral Red with a stated prediction. Invoke when the user asks for /red, for the next Red step, or wants to drive Red-Green-Refactor one phase at a time instead of letting the full cycle run.
+name: exact-red
+description: Run only the Red phase of one Predictive TDD cycle — activate exactly one behavior and reach a behavioral Red with a stated prediction. Invoke when the user asks for /exact-red, for the next Red step, or wants to drive Red-Green-Refactor one phase at a time instead of letting the full cycle run.
 ---
 
 # Red — one phase, manually driven
+
+Paths in this skill are relative to this skill's directory.
 
 > **This is a manual phase control, not a separate method.** It runs step 1 and
 > step 2 of the predictive cycle and then stops. Use it when you want to steer
@@ -13,15 +15,15 @@ description: Run only the Red phase of one Predictive TDD cycle — activate exa
 
 ## What to read
 
-1. `.github/skills/predictive-tdd/SKILL.md` — section **Core rules** and
+1. `../exact-predictive-tdd/SKILL.md` — section **Core rules** and
    steps **1** and **2** of **One predictive cycle** (choosing and activating
    one behavior, reaching behavioral Red). Those are binding as written,
    including any rule there about which test to activate next.
-2. The matching profile under `.github/skills/predictive-tdd/stacks/` for
+2. The matching profile under `../exact-predictive-tdd/stacks/` for
    inactive-test syntax and the commands to run.
-3. `.github/skills/exact-coding-shared/human-in-the-loop.md` for the Red checkpoint and the prediction-mismatch rule.
+3. `../exact-predictive-tdd/human-in-the-loop.md` for the Red checkpoint and the prediction-mismatch rule.
 
-If no ordered test list exists yet, say so and offer `test-list` first. Do not
+If no ordered test list exists yet, say so and offer `exact-test-list` first. Do not
 invent a list as a side effect of this phase.
 
 ## What to do
@@ -35,7 +37,7 @@ Execute exactly those two steps of the cycle, then stop:
 
 ## Where to stop
 
-Stop at the Red checkpoint from `.github/skills/exact-coding-shared/human-in-the-loop.md` and report the active behavior, the
+Stop at the Red checkpoint from `../exact-predictive-tdd/human-in-the-loop.md` and report the active behavior, the
 prediction, the actual result, and why this failure is the intended behavioral
 Red. Do not write production behavior, and do not continue into Green — even
 when the Autonomy Level would not stop there. The human invoked a single phase;

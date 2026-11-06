@@ -1,10 +1,10 @@
 ---
-name: end-refactor
+name: exact-end-refactor
 description: Final metric-driven refactoring pass over the whole production tree, using the active stack profile's smell and cognitive-complexity tools plus McCabe and APP mass to drive one measured change at a time. Invoke when the user explicitly asks for a final cleanup, a quality pass over the finished code, or an end-refactor. Do NOT invoke automatically after a TDD cycle — the per-cycle refactor already covers that.
 ---
 
 > **This is an optional, manually invoked pass.** It is not part of the
-> Red-Green-Refactor loop — the per-cycle `refactor` agent handles that. Run
+> Red-Green-Refactor loop — the per-cycle `exact-isolated-refactor` custom agent handles that. Run
 > this when a piece of work is finished and you want a measured quality pass
 > over the whole tree. It costs noticeably more time and tokens than a
 > per-cycle refactor, and it is worth it mainly on multi-file code where

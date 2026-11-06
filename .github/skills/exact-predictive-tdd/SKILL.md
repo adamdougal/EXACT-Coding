@@ -1,9 +1,11 @@
 ---
-name: predictive-tdd
+name: exact-predictive-tdd
 description: Run strict Predictive Test-Driven Development by stating falsifiable expectations before every deterministic check, comparing predictions with reality, and proceeding in one-test Red-Green-Refactor cycles. Use when the user explicitly requests Predictive TDD, prediction-driven TDD, or asks to continue an existing Predictive TDD cycle.
 ---
 
 # Predictive Test-Driven Development
+
+Paths in this skill are relative to this skill's directory.
 
 Use TDD as an empirical feedback loop: predict, check, compare, and let the evidence determine the next change.
 
@@ -65,7 +67,7 @@ If loading or compilation prevents the assertion from running, add only enough s
 
 If the new driving test already passes against your prediction, record the prediction as `Incorrect`, investigate which earlier change made it pass, record that no production change was needed, and do not manufacture a failure.
 
-Close the phase with the `Red Phase Complete:` block and both prediction lines. Then consult `.github/skills/exact-coding-shared/human-in-the-loop.md` and apply the Red checkpoint for the active Autonomy Level.
+Close the phase with the `Red Phase Complete:` block and both prediction lines. Then consult `human-in-the-loop.md` and apply the Red checkpoint for the active Autonomy Level.
 
 ### 3. Reach Green minimally
 
@@ -138,7 +140,7 @@ Make at most one refactoring at a time. Predict and run the smallest relevant ch
 Apply the Four Rules and domain-boundary contract through that profile's
 inline or isolated mechanism. Open the phase with the `## Refactor` marker
 (see below) and emit it also when the review concludes that no refactoring
-improves the code. After the review, consult `.github/skills/exact-coding-shared/human-in-the-loop.md` and apply the
+improves the code. After the review, consult `human-in-the-loop.md` and apply the
 Refactor checkpoint for the active Autonomy Level.
 
 ### 5. Close once
@@ -214,7 +216,7 @@ skipped.
 When actual and predicted outcomes differ:
 
 1. State that the prediction was incorrect and preserve both outcomes.
-2. Stop feature implementation and consult `.github/skills/exact-coding-shared/human-in-the-loop.md`. Unless the Autonomy Level is `autonomous`, report the discrepancy and wait for the human's decision.
+2. Stop feature implementation and consult `human-in-the-loop.md`. Unless the Autonomy Level is `autonomous`, report the discrepancy and wait for the human's decision.
 3. Use the smallest deterministic check to explain whether the cause is existing behavior, test setup, command/environment, load/compile failure, quality tooling, coupling, or regression.
 4. Make a new evidence-based prediction and check it.
 5. Resume only after the discrepancy is understood.

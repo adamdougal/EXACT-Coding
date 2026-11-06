@@ -1,5 +1,5 @@
 ---
-name: refactor
+name: exact-isolated-refactor
 description: Isolated Predictive-TDD refactoring specialist. Reviews green code under the Four Rules and the domain-boundary contract, applies behavior-preserving trials, verifies them, and reports retained or undone outcomes.
 ---
 

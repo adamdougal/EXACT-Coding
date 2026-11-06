@@ -5,16 +5,18 @@ description: Predictive Test-Driven Development with a complete up-front test li
 
 # EXACT Coding — Predictive TDD v1.2 — Isolated Refactor
 
+Paths in this skill are relative to this skill's directory.
+
 This is the consumer form of the universal EXACT Coding Predictive-TDD line. It runs in
 one shared context: Test List once, then one-test Red-Green-Refactor cycles.
 Refactoring uses the Four Rules of Simple Design in an isolated subagent. Refactoring also applies a domain-responsibility review and a mandatory concrete boundary trial whenever it finds a credible semantic seam. This profile deliberately has no APP calculation or metric-driven end pass.
 
 ## Preparation
 
-1. Read `.github/skills/test-list/SKILL.md`.
-2. Read `.github/skills/predictive-tdd/SKILL.md`.
+1. Read `../exact-test-list/SKILL.md`.
+2. Read `../exact-predictive-tdd/SKILL.md`.
 3. Determine the project's language and test framework. Read the matching file
-   under `.github/skills/predictive-tdd/stacks/` before changing code.
+   under `../exact-predictive-tdd/stacks/` before changing code.
 4. Read the complete specification and establish the applicable baseline gates.
 
 Do not assume TypeScript or Vitest from this orchestration file. Concrete
@@ -27,7 +29,7 @@ tools belong only to the selected stack profile.
    the driving tests first, the verification tests after them in their
    `verification` group. Then predict and verify that the inactive list
    leaves the full suite green.
-2. Apply the Test-List checkpoint from `.github/skills/exact-coding-shared/human-in-the-loop.md`.
+2. Apply the Test-List checkpoint from `../exact-predictive-tdd/human-in-the-loop.md`.
 3. For exactly one driving behavior at a time, follow the Predictive TDD skill:
    - reconsider whether the next driving test will still fail, and move it
      into the `verification` group before activating it if an earlier
@@ -37,7 +39,7 @@ tools belong only to the selected stack profile.
      explicitly with reality,
    - apply the Red checkpoint,
    - reach Green with the smallest production change,
-   - after every Green, delegate the Four Rules review through the `refactor` custom agent; invoke it even when Green changed no production code,
+   - after every Green, delegate the Four Rules review through the `exact-isolated-refactor` custom agent; invoke it even when Green changed no production code,
    - perform the mandatory domain-boundary trial and retain or narrowly undo it based on semantic and test evidence,
    - apply the Refactor checkpoint.
 4. When every driving test is active and green, activate the verification
@@ -62,7 +64,7 @@ The subagent never manages checkpoints or waits for the user. The main context r
 
 ## Human-in-the-loop
 
-`.github/skills/exact-coding-shared/human-in-the-loop.md` is the single source of truth for checkpoints. Its default
+`../exact-predictive-tdd/human-in-the-loop.md` is the single source of truth for checkpoints. Its default
 `full-hitl` level stops after Test List, Red, and Refactor, and whenever a
 prediction is wrong. Green has no default stop.
 

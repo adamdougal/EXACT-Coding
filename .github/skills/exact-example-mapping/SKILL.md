@@ -1,5 +1,5 @@
 ---
-name: example-mapping
+name: exact-example-mapping
 description: Collaborative Example Mapping session (Matt Wynne) to explore a feature before implementation — discovers rules, concrete examples, open questions and out-of-scope stories through conversation. Invoke when the user explicitly asks for Example Mapping, wants to explore or clarify requirements before coding, or asks to prepare a feature for TDD. Do NOT invoke for coding tasks where the requirements are already settled.
 ---
 
@@ -21,7 +21,7 @@ Example Mapping (by Matt Wynne) is a collaborative technique to explore a featur
 
 Example Mapping is the **bridge between requirements and test lists**:
 1. **Example Mapping** discovers rules and concrete examples through conversation
-2. **Test List** (`test-list` skill) converts those examples into `it.todo()` test cases
+2. **Test List** (`exact-test-list` skill) converts those examples into inactive test cases
 3. **Red-Green-Refactor** implements them one by one
 
 Without Example Mapping, developers often:
@@ -238,12 +238,12 @@ After writing the file, report the health of the Example Mapping:
 | Green cards (Examples) | Few -> Thin coverage | Need more concrete examples |
 | Green cards **per rule** | Many (>3) under one rule -> Hidden rules | Check whether the examples differ in reason, not just in values; split the blue card |
 | New Stories | Several -> Slice was too big | Feed them back into story slicing; the current story is still fine to build |
-| Overall | Balanced -> Ready | Proceed to the `test-list` skill |
+| Overall | Balanced -> Ready | Proceed to the `exact-test-list` skill |
 
 ## Next Step
 
 After completing the Example Mapping, suggest:
-- If healthy: "Example Mapping complete. Invoke the `test-list` skill to convert examples into TDD test cases."
+- If healthy: "Example Mapping complete. Invoke the `exact-test-list` skill to convert examples into TDD test cases."
 - If too many questions: "There are still open questions. Resolve them before proceeding."
 - If too large: "Consider splitting this feature into smaller stories."
 - If a rule carries many examples: "Rule X may hide a second rule - worth splitting before writing tests."
